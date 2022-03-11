@@ -120,7 +120,7 @@ def _write_partitioned(
         if not isinstance(keys, tuple):
             keys = (keys,)
         subdir = fs.sep.join(
-            [f"{name}={quote_plus(val.isoformat() if isinstance(val, (datetime, date) else str(val)))}" for name, val in zip(partition_cols, keys)]
+            [f"{name}={quote_plus(val.isoformat() if isinstance(val, (datetime, date)) else str(val))}" for name, val in zip(partition_cols, keys)]
         )
         subtable = pandas_to_arrow_table(
             subgroup, preserve_index=preserve_index, schema=subschema
